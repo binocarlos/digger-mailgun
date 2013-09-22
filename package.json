@@ -1,0 +1,27 @@
+{
+  "name": "digger-mailgun",
+  "version": "0.0.0",
+  "description": "A digger supplier for the mailgun API",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/binocarlos/digger-mailgun.git"
+  },
+  "keywords": [
+    "mailgun",
+    "digger"
+  ],
+  "author": "Kai Davenport",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/binocarlos/digger-mailgun/issues"
+  },
+  "dependencies": {
+    "digger-supplier": "~0.1.6",
+    "mailgun": "~0.4.2",
+    "async": "~0.2.9"
+  }
+}
