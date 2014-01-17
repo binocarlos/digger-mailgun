@@ -28,9 +28,6 @@ module.exports = function(options){
 	var supplier = Supplier(options);
 
 	supplier.on('append', function(req, reply){
-		console.log('-------------------------------------------');
-		console.log('mailgun');
-		console.dir(req);
 
 		async.forEach(req.body || [], function(email, nextemail){
 
