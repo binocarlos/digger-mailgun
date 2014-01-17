@@ -20,7 +20,7 @@ module.exports = function(options){
 
 	options = options || {};
 
-	var apikey = options.apikey || process.env.DIGGER_MAILGUN_APIKEY;
+	var apikey = options.apikey || process.env.DIGGER_MAILGUN_KEY;
 	var domain = options.domain || process.env.DIGGER_MAILGUN_DOMAIN;
 
 	var mg = new Mailgun(apikey);
