@@ -13,7 +13,7 @@
  */
 
 var Supplier = require('digger-supplier');
-var Mailgun = require('mailgun').Mailgun;
+var Mailgun = require('mailgun-js');
 var async = require('async');
 
 module.exports = function(options){
@@ -23,7 +23,17 @@ module.exports = function(options){
 	var apikey = options.apikey || process.env.DIGGER_MAILGUN_KEY;
 	var domain = options.domain || process.env.DIGGER_MAILGUN_DOMAIN;
 
-	var mg = new Mailgun(apikey);
+	if(!apikey){
+		console.error('DIGGER_MAILGUN_KEY required');
+		process.exit(1);
+	}
+
+	if(!domain){
+		console.error('DIGGER_MAILGUN_DOMAIN required');
+		process.exit(1);
+	}
+
+	var mailgun = Mailgun(apikey, domain);
 
 	var supplier = Supplier(options);
 
@@ -31,17 +41,17 @@ module.exports = function(options){
 
 		async.forEach(req.body || [], function(email, nextemail){
 
-			mg.sendText(
-				email.from,
-        [email.to],
-        email.subject,
-        email.body,
-        function(err){
-        	nextemail(err);
-        })
-
+			mailgun.messages.send({
+				from:email.from,
+				to:email.to,
+				subject:email.subject,
+				text:email.body
+			}, function(error, response, body){
+				nextemail(error);
+			})
+			
 		}, function(error){
-			reply(error, req.body || []);
+			reply(error, []);
 		})
 	})
 
