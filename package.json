@@ -1,6 +1,6 @@
 {
   "name": "digger-mailgun",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "A digger supplier for the mailgun API",
   "main": "src/index.js",
   "scripts": {
